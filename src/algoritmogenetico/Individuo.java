@@ -127,4 +127,9 @@ public class Individuo implements Comparable<Individuo> {
     public int compareTo(Individuo i) {
         return 1 /*this.aptidao.compareTo(i.aptidao)*/;
     }
+
+//    @Override
+//    public int compareTo(Individuo o) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 }

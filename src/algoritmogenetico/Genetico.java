@@ -9,7 +9,7 @@ public class Genetico {
     static final double TAXADEMUTACAO = 0.5;
     static final double TAXADECRUZAMENTO = 0.9;
     static final boolean ELITISMO = true;
-    static final int TAMANHODAPOPULACAO = 200;
+    static final int TAMANHODAPOPULACAO = 400;
     static final int MAXIMODEGERACOES = 1000;
     //-------------------------------------------------
 
