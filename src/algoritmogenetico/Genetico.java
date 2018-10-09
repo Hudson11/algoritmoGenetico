@@ -32,7 +32,7 @@ public class Genetico {
         do {
             populacao = gerarPopulacao();
 
-            System.out.println("Geracao " + geracao + "| Melhor " + populacao.getIndividuo(0));
+            System.out.println("Geracao " + geracao + "| Melhor " + populacao.indi);
 
             contaEstagnacao();
             if (contEstagnar >= 200) {
@@ -47,7 +47,7 @@ public class Genetico {
         Populacao novaPopulacao = new Populacao();
 
         if (ELITISMO) {
-            novaPopulacao.setIndividuo(populacao.getIndividuo(0));
+            novaPopulacao.setIndividuo(populacao.indi);
         }
 
         // insere novos individuos na nova populacao, ate atingir o tamanho maximo
@@ -131,11 +131,15 @@ public class Genetico {
 
         if (r.nextDouble() <= TAXADECRUZAMENTO) {
             // se tiver mais genes, adapta os pontos de corte
-            System.arraycopy(pai0, 0, filho0, 0, 1);
-            System.arraycopy(pai0, 1, filho1, 1, 1);
+            
+            int value = r.nextInt(7);
+            value += 1;
+            
+            System.arraycopy(pai0, 0, filho0, 0, value); 
+            System.arraycopy(pai0, value, filho1, value, 8-value);
 
-            System.arraycopy(pai1, 0, filho1, 0, 1);
-            System.arraycopy(pai1, 1, filho0, 1, 1);
+            System.arraycopy(pai1, 0, filho1, 0, value);
+            System.arraycopy(pai1, value, filho0, value, 8-value);
         } else {
             filho0 = pai0;
             filho1 = pai1;
@@ -149,8 +153,8 @@ public class Genetico {
     }
 
     private void contaEstagnacao() {
-        if (melhorAptidaoAnterior == -1 || populacao.getIndividuo(0).getAptidao() != melhorAptidaoAnterior) {
-            melhorAptidaoAnterior = populacao.getIndividuo(0).getAptidao();
+        if (melhorAptidaoAnterior == -1 || populacao.indi.getAptidao() != melhorAptidaoAnterior) {
+            melhorAptidaoAnterior = populacao.indi.getAptidao();
             contEstagnar = 1;
         } else {
             contEstagnar++;

@@ -5,7 +5,8 @@ import java.util.Collections;
 
 public class Populacao {
 
-    private final ArrayList<Individuo> individuos;
+    public final ArrayList<Individuo> individuos;
+    Individuo indi;
 
     public Populacao() {
         individuos = new ArrayList<>();
@@ -23,7 +24,13 @@ public class Populacao {
         //Collections.sort(individuos, Collections.reverseOrder()); 
 
         //crescente para casos de minimização
-        Collections.sort(individuos);
+        Collections.sort(individuos, Collections.reverseOrder());
+        for(Individuo v: individuos){
+            if(v.validar() == true){
+                indi = v;
+                break;
+            }
+        }
     }
 
     public Individuo getIndividuo(int pos) {

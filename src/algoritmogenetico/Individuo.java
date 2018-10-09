@@ -6,22 +6,23 @@ import java.util.Random;
 public class Individuo implements Comparable<Individuo> {
 
     private final Random random = new Random();
-    private int aptidao;
+    private Integer aptidao;
 
     //Um indivíduo é uma possível solução para o problema.
     //atributos do problema especifico
     private int PESO[] = {5, 4, 7, 8, 4, 4, 6, 8};
     private int VALOR[] = {3, 3, 2, 4, 2, 3, 5, 8};
 
-    private int[] cromossomo = {0,1,0,1,1,1,0,1};
+    private int[] cromossomo ;
 
     //cria um individuo aleatorio da primeira geracao
     public Individuo() {
-        do {
+        cromossomo = new int[8];
+        //do {
 //			this.setPeso();
 //			this.setValor();
-            this.setCromossomo();
-        } while (!validar());
+        this.setCromossomo();
+        //} while (!validar());
         avaliar();
     }
 
@@ -40,7 +41,7 @@ public class Individuo implements Comparable<Individuo> {
         avaliar();
     }
 
-    private boolean validar() {
+    public boolean validar() {
 //		double proteina = 0.0851 * qtdMilho + 0.456 * qtdSoja;
 //		double energia = 3146 * qtdMilho + 2283 * qtdSoja;
 
@@ -56,17 +57,17 @@ public class Individuo implements Comparable<Individuo> {
         } else {
             return false;
         }
-        //return proteina >= 0.1716 && energia >= 3000;
+       
     }
 
     private void mutacao(int posicao) {
-        do {
+        //do {
             if (cromossomo[posicao] == 1) {
                 cromossomo[posicao] = 0;
             } else {
                 cromossomo[posicao] = 1;
             }
-        } while (!validar());
+        //} while (!validar());
 
     }
 
@@ -88,7 +89,6 @@ public class Individuo implements Comparable<Individuo> {
 //    private void setValor() {
 //        this.qtdSoja = random.nextDouble();
 //    }
-
     public double getAptidao() {
         return aptidao;
     }
@@ -96,26 +96,21 @@ public class Individuo implements Comparable<Individuo> {
 //    public double[] getGenes() {
 //        return new double[]{qtdMilho, qtdSoja};
 //    }
+    public int[] getCromossomo() {
 
-    public int[] getCromossomo(){
-        
-        int[] novoCromossomo = new int[cromossomo.length];
-        novoCromossomo = cromossomo;
-        
+       
         return cromossomo;
     }
-    
+
     private void avaliar() {
-        
+
         //Avaliar = valor;
-        int somaValor = 0;
+        aptidao = 0;
         for (int x = 0; x < 8; x++) {
             if (cromossomo[x] == 1) {
-                somaValor += VALOR[x];
+                aptidao += VALOR[x];
             }
         }
-        
-        aptidao = somaValor;
     }
 
     @Override
@@ -125,7 +120,7 @@ public class Individuo implements Comparable<Individuo> {
 
     @Override
     public int compareTo(Individuo i) {
-        return 1 /*this.aptidao.compareTo(i.aptidao)*/;
+        return this.aptidao.compareTo(i.aptidao);
     }
 
 //    @Override

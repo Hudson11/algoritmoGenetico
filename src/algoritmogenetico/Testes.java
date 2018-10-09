@@ -6,11 +6,21 @@ import java.util.Random;
 public class Testes {
 
     public static void main(String[] args) {
-        testaCruzamento();
-        selecaoRoleta();
+        //testaCruzamento();
+        //selecaoRoleta();
+        
+        teste1();
 
     }
 
+    private static void teste1(){
+        Populacao c = new Populacao();
+        c.iniciarPopulacao(10);
+        for(Individuo v: c.individuos){
+            System.out.println(v.toString());
+        }
+    }
+    
     private static void testaCruzamento() {
         double[] pai0 = {5, 6, 7, 8};
         double[] pai1 = {1, 2, 3, 4};
