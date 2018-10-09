@@ -10,19 +10,19 @@ public class Individuo implements Comparable<Individuo> {
 
     //Um indivíduo é uma possível solução para o problema.
     //atributos do problema especifico
-    private int PESO[] = {5, 4, 7, 8, 4, 4, 6, 8};
-    private int VALOR[] = {3, 3, 2, 4, 2, 3, 5, 8};
+    private static final int PESO[] = {5, 4, 7, 8, 4, 4, 6, 8};
+    private static final int VALOR[] = {3, 3, 2, 4, 2, 3, 5, 8};
 
     private int[] cromossomo ;
 
     //cria um individuo aleatorio da primeira geracao
     public Individuo() {
         cromossomo = new int[8];
-        //do {
+        do {
 //			this.setPeso();
 //			this.setValor();
         this.setCromossomo();
-        //} while (!validar());
+        } while (!validar());
         avaliar();
     }
 
@@ -49,15 +49,18 @@ public class Individuo implements Comparable<Individuo> {
         //Validar = Peso
         for (int x = 0; x < 8; x++) {
             if (cromossomo[x] == 1) {
+                
                 somaPeso += PESO[x];
             }
         }
-        if (somaPeso <= 25) {
-            return true;
-        } else {
-            return false;
-        }
-       
+        
+//        if (somaPeso <= 25) {
+//            System.out.println("O PESO: "+somaPeso);
+//            return true;
+//        } else {
+//            return false;
+//        }
+       return somaPeso <= 25;
     }
 
     private void mutacao(int posicao) {
@@ -105,8 +108,8 @@ public class Individuo implements Comparable<Individuo> {
     private void avaliar() {
 
         //Avaliar = valor;
-        aptidao = 0;
-        for (int x = 0; x < 8; x++) {
+        aptidao = -1;
+        for (int x = 0; x < cromossomo.length; x++) {
             if (cromossomo[x] == 1) {
                 aptidao += VALOR[x];
             }
