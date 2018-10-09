@@ -10,8 +10,9 @@ package algoritmogenetico;
  * @author Laura
  */
 public class Principal {
+
     public static void main(String[] args) {
-		Genetico AG = new Genetico();
-                AG.Iniciar();
-	}
+        Genetico AG = new Genetico();
+        AG.Iniciar();
+    }
 }
